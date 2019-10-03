@@ -1,2 +1,0 @@
-ssh -v -i Downloads/pewpew.pem -R 0.0.0.0:8000:localhost:8000 ubuntu@52.29.221.185
-sudo socat TCP-LISTEN:80,fork TCP:127.0.0.1:8000
