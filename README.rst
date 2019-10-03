@@ -5,7 +5,7 @@ Setup
 
 * Connnect PewPew via USB and list your devices to find a new serial named like `/dev/ttyACM*`. Let's say it's `/dev/ttyACM0`.
 * Make the serial device read and write able (`chmod 666 /dev/ttyACM0` is fair enough but potentially unsafe!)
-* Optional: run `minicom -D /dev/ttyACM0` and push first Ctrl-C and second Enter. You will enter the shell session with PewPew, the same which is used by the application code. You can play around a little and after running the game you can monitor all the commands sent to PewPew from the application.
+* Optional but recommended: run `minicom -D /dev/ttyACM0` and push first Ctrl-C and second Enter. You will enter the shell session with PewPew, the same which is used by the application code. You can play around a little and after running the game you can monitor all the commands sent to PewPew from the application. This step may be sometimes mandatory since the initial device sequence from the django app doesn't work always properly.
 * Install requirements.txt (use Python 3).
 * Verify is the path to your serial device is the same as in `ball.py` and `pewpewrelay/pewpewrelay/settings.py` (search for `SERIAL_PORT`) and modify those files respectively.
 * Type `python manage.py runserver` and visit http://localhost:8000/1 and http://localhost:8000/2 to verify you can move the paddles.
