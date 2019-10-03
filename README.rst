@@ -1,4 +1,4 @@
-This is an online version of Pong on PewPew. Connect the device to a linux based server and use it as a screen for online players.
+This is an online version of Pong on PewPew. Connect the device to a linux based server and use it as a screen for online players. Run a simple django app to allow moving the paddles on a website. Execute a simple script to run the game.
 
 Setup
 =====
@@ -7,7 +7,7 @@ Setup
 * Make the serial device read and write able (`chmod 666 /dev/ttyACM0` is fair enough but potentially unsafe!)
 * Optional: run `minicom -D /dev/ttyACM0` and push first Ctrl-C and second Enter. You will enter the shell session with PewPew, the same which is used by the application code. You can play around a little and after running the game you can monitor all the commands sent to PewPew from the application.
 * Install requirements.txt (use Python 3).
-* Verify is the path to your serial device is the same as in `ball.py` and 
+* Verify is the path to your serial device is the same as in `ball.py` and `pewpewrelay/pewpewrelay/settings.py` (search for `SERIAL_PORT`) and modify those files respectively.
 * Type `python manage.py runserver` and visit http://localhost:8000/1 and http://localhost:8000/2 to verify you can move the paddles.
 * Type `python ball.py` to run the game.
 
