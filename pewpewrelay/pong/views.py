@@ -25,7 +25,7 @@ def _index_template(side):
         <h1>Welcome player {side}</h1>
         <button onclick="move('{side}_up')" style="font-size: 72">&nbsp;&nbsp;UP&nbsp;&nbsp;</button>
         <button onclick="move('{side}_down')" style="font-size: 72">DOWN</button>
-    ''' #.format({'side':side})
+    '''
 
 
 def move_left_up(request):

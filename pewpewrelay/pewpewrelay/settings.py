@@ -1,3 +1,5 @@
+SERIAL_PORT = '/dev/ttyACM0'
+
 """
 Django settings for pewpewrelay project.
 
@@ -11,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import serial
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +28,7 @@ SECRET_KEY = 'f%ad+(l^f9bjwuju&eof@^&0dk10^!)lz)6_3@z$o*r@e!ii6b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['52.29.221.185', 'localhost']
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -120,20 +123,23 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-def init_pew():
-    import serial
+def init_pewpew():
     ser = serial.Serial(
-        port='/dev/ttyACM0',
-        baudrate=9600,
+        port=SERIAL_PORT,
+        baudrate=900,
         parity=serial.PARITY_ODD,
         stopbits=serial.STOPBITS_TWO,
         bytesize=serial.SEVENBITS
     )
+    # Init the serial session
     ser.write(chr(2).encode())
+    ser.write(chr(10).encode())
+
+    # Init the device and screen
     ser.write(b'import pew\r\n')
     ser.write(b'pew.init()\r\n')
     ser.write(b'screen = pew.Pix()\r\n')
     return ser
 
-SER = init_pew()
+SER = init_pewpew()
 PIXELS = [[0, 0], [7, 0]]
