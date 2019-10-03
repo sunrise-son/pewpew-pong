@@ -48,16 +48,16 @@ def show():
     ser_write('pew.show(screen)')
 
 
-def draw_shape(shape, color):
+def draw_shape(shape):
     for pix in shape:
-        pixel(pix[0], pix[1], color)
+        pixel(Vector(pix[0], pix[1]), 3)
     show()
 
 
 def clear_screen():
     for i in range(8):
         for j in range(8):
-            pixel(i, j, 0)
+            pixel(Vector(i, j), 0)
     show()
 
 
@@ -99,7 +99,8 @@ if __name__ == '__main__':
             direction.x *= -1
 
             # Read the current paddle position (provided by the django app)
-            with open('/tmp/pos' + str(int(pos.y/7))) as opened:
+            paddle_pos_file = '/tmp/pos' + str(int(pos.x/7))
+            with open(paddle_pos_file) as opened:
                 paddle_pos = int(opened.read())
 
             # If paddle was not present on the ball position, it's over
@@ -107,7 +108,7 @@ if __name__ == '__main__':
                 game_over = True
 
         # Draw new ball position
-        pixel(pos, 0)
+        pixel(pos, 3)
         show()
 
         # Interval between the ball steps
