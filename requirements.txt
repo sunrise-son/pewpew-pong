@@ -1,2 +1,2 @@
 pyserial==3.4
-Django==2.2.4
+Django==2.2.28
